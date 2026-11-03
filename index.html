@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rettungsleitung</title>
+<style>
+:root{
+  --bg:#F2F2F7; --card:#FFF; --text:#000; --text2:rgba(60,60,67,.6);
+  --sep:rgba(60,60,67,.29); --accent:#007AFF;
+  --green:#34C759; --orange:#FF9500; --red:#FF3B30;
+  --font:-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000; --card:#1C1C1E; --text:#FFF; --text2:rgba(235,235,245,.6);
+  --sep:rgba(84,84,88,.6); --accent:#0A84FF;
+  --green:#30D158; --orange:#FF9F0A; --red:#FF453A;
+}}
+*{box-sizing:border-box}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:28px;font-weight:700;margin:0 0 4px}
+h2{font-size:22px;font-weight:600;margin:40px 0 8px}
+h3{font-size:17px;font-weight:600;margin:0}
+p{max-width:65ch;margin:8px 0}
+.meta,.secondary{color:var(--text2);font-size:15px}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:.5px solid var(--sep)}
+nav .in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;font-size:15px;white-space:nowrap}
+nav .in::-webkit-scrollbar{display:none}
+nav a{color:var(--text2)} nav a:hover{color:var(--accent);text-decoration:none}
+.group{background:var(--card);border-radius:12px;overflow:hidden;margin:8px 0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 16px}
+.row+.row{border-top:.5px solid var(--sep)}
+.row .k{flex:0 0 auto;font-weight:600}
+.row .v{text-align:right;color:var(--text2);font-size:15px}
+.item{padding:12px 16px}
+.item+.item{border-top:.5px solid var(--sep)}
+.item p{margin:2px 0 0;font-size:15px;color:var(--text2)}
+.pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,currentColor 14%,transparent);white-space:nowrap}
+.ok{color:var(--green)} .wait{color:var(--orange)} .late{color:var(--red)} .info{color:var(--accent)} .est{color:var(--text2)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-variant-numeric:tabular-nums;font-size:15px}
+th,td{text-align:left;padding:10px 16px;border-top:.5px solid var(--sep);vertical-align:top}
+th{font-size:13px;font-weight:600;color:var(--text2);border-top:0}
+td.n{text-align:right;white-space:nowrap}
+.tw{overflow-x:auto;border-radius:12px;margin:8px 0}
+details{background:var(--card);border-radius:12px;padding:12px 16px;margin:8px 0}
+details>summary{cursor:pointer;color:var(--accent)}
+details[open]>summary{margin-bottom:8px}
+ul{margin:6px 0;padding-left:20px} li{margin:2px 0}
+.lead{font-size:20px;font-weight:600;line-height:1.35;margin:12px 0 4px;max-width:30ch}
+.score{display:flex;gap:8px;margin:8px 0}
+.score .group{flex:1;margin:0;padding:12px 16px}
+.score b{display:block;font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:color-mix(in srgb,var(--text2) 25%,transparent);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.script p{max-width:62ch;margin:0 0 12px}
+.script .cue{font-size:13px;font-weight:600;color:var(--text2);margin:16px 0 4px}
+.script .cue:first-child{margin-top:0}
+.date{font-variant-numeric:tabular-nums;color:var(--text2);font-size:15px;flex:0 0 92px}
+.log .row{justify-content:flex-start}
+@media (max-width:520px){
+  .row{flex-direction:column;gap:2px}
+  .row .v{text-align:left}
+  .score{flex-direction:column}
+  .log .row{flex-direction:row}
+}
+</style>
+</head>
+<body>
+<nav><div class="in">
+  <a href="#stand">Stand</a>
+  <a href="#idee">Idee</a>
+  <a href="#bewertung">Bewertung</a>
+  <a href="#wettbewerb">Wettbewerb</a>
+  <a href="#markt">Markt</a>
+  <a href="#zielgruppe">Zielgruppe</a>
+  <a href="#sprechtext">Sprechtext</a>
+  <a href="#verlauf">Verlauf</a>
+  <a href="#quellen">Quellen</a>
+</div></nav>
+
+<main>
+<h1 id="stand">Rettungsleitung</h1>
+<div class="meta">Kurs „Entwicklung einer Geschäftsidee“ · Team 2 · Stand: 03.11.2026</div>
+
+<p class="lead">„Kann ich hier bohren – oder liegt da eine Leitung?“</p>
+
+<!-- ============ IDEE ============ -->
+<h2 id="idee">Idee</h2>
+<p>Statt dass jeder Bewohner ein Ortungsgerät kauft, wird die Wohnung einmal gescannt, solange die Wände noch offen sind. Danach sieht jeder Berechtigte in einer App, wo Strom-, Wasser-, Heizungs- und Gasleitungen liegen.</p>
+<div class="group">
+  <div class="item"><h3>1. Erfassen</h3><p>Elektriker, SHK oder Sanierer läuft vor dem Verputzen mit iPhone/iPad (LiDAR) oder Profi-Scanner einmal durch die Wohnung.</p></div>
+  <div class="item"><h3>2. Speichern</h3><p>Scan landet in einer Online-Datenbank, Leitungen werden nach Art markiert (Strom, Wasser, Heizung, Gas).</p></div>
+  <div class="item"><h3>3. Zugang per QR</h3><p>QR-Code innen an der Klappe des Sicherungskastens. Wer in der Wohnung ist, kommt an den Scan. Ziel: neuer Branchenstandard.</p></div>
+  <div class="item"><h3>4. Nutzen</h3><p>B2C: Mieter und Eigentümer prüfen vor dem Bohren in 3D. B2B: Betriebe planen Sanierungen mit einem räumlichen Modell statt mit tausenden Einzelfotos.</p></div>
+</div>
+
+<details>
+  <summary>Was das Team schon gesammelt hat (Folien)</summary>
+  <ul>
+    <li><b>Problem:</b> Leitungsverläufe unsichtbar, Pläne fehlen oder sind veraltet, Laien schätzen nach Gefühl.</li>
+    <li><b>Folgen:</b> Stromschlag, Wasserschaden, bei Gas Brand- und Explosionsrisiko, teure Reparaturen.</li>
+    <li><b>Z&amp;Z Concept Bau:</b> Bedarf bestätigt. Zielgruppe Bestandsgebäude mit neuen Nutzern, die einziehen und sanieren. Neue Idee: Dokumentation schon beim Neubau durch Bauherren. Wunsch: einfach und günstig für Laien.</li>
+    <li><b>ELT-Handwerk:</b> Kunden rufen an, weil sie Leitungen angebohrt haben. Reparatur heißt Stemmarbeit. Fälle: Hauptzuleitung, Wasserleitung, teure Versicherungsfälle.</li>
+    <li><b>Heutige Lösungen:</b> Installationsnorm (nur Fachleuten bekannt), kontaktloser Spannungsprüfer, Multifunktions-Ortungsgerät, Wärmebildkamera.</li>
+  </ul>
+</details>
+
+<!-- ============ BEWERTUNG ============ -->
+<h2 id="bewertung">Bewertung</h2>
+<div class="score">
+  <div class="group"><span class="secondary">Als Uni-Projekt</span><b>8/10</b><div class="bar"><i style="width:80%"></i></div></div>
+  <div class="group"><span class="secondary">Als echtes Startup</span><b>5/10</b><div class="bar"><i style="width:50%"></i></div></div>
+</div>
+<p><b>Kurzurteil:</b> Echtes Problem, von Praktikern bestätigt, und im deutschen Wohnbereich gibt es keinen fertigen Anbieter für genau diese Kombination. Die Schwäche ist nicht die Technik, sondern das Henne-Ei-Problem: Der Scan nützt erst Jahre später einem anderen Menschen als dem, der ihn macht.</p>
+
+<h3 style="margin-top:20px">Stark</h3>
+<div class="group">
+  <div class="item"><b>Bedarf belegt</b><p>Zwei Praxis-Quellen (Z&amp;Z, ELT-Handwerk) bestätigen angebohrte Leitungen als wiederkehrenden, teuren Fall.</p></div>
+  <div class="item"><b>Nachmieter-Lücke</b><p>Der Erstbesitzer bekommt oft Pläne. Der dritte, vierte, fünfte Bewohner hat nichts. Das ist euer stärkstes Argument.</p></div>
+  <div class="item"><b>Praxis existiert schon im Großen</b><p>Vor-dem-Verputz-Scans sind in US-Großprojekten etabliert (OpenSpace, Matterport). Das zeigt: die Methode funktioniert, nur nicht für Wohnungen und Endnutzer.</p></div>
+  <div class="item"><b>Billige Erfassung</b><p>LiDAR steckt in jedem iPhone Pro / iPad Pro. Kein Spezialgerät nötig für kleine Betriebe.</p></div>
+  <div class="item"><b>QR im Sicherungskasten</b><p>Clever: Zugang hat, wer physisch in der Wohnung ist. Löst Auffindbarkeit und Berechtigung zugleich.</p></div>
+</div>
+
+<h3 style="margin-top:20px">Schwach</h3>
+<div class="group">
+  <div class="item"><span class="pill late">kritisch</span> <b>Henne-Ei</b><p>Heute hat keine Bestandswohnung einen Scan. Wert für Mieter entsteht erst nach der nächsten Sanierung. Einstieg muss deshalb über Sanierung und Neubau laufen, nicht über Endkunden.</p></div>
+  <div class="item"><span class="pill late">kritisch</span> <b>Wer zahlt?</b><p>Der Handwerker hat den Aufwand, der Mieter den Nutzen. Ein Ortungsgerät kostet nur rund 40–60 €, also zahlt kaum ein Mieter mehr. Zahler muss Eigentümer, Hausverwaltung oder Bauherr sein.</p></div>
+  <div class="item"><span class="pill wait">Achtung</span> <b>Genauigkeit nach dem Verputz</b><p>LiDAR erfasst Oberflächen, nicht das Wandinnere. Leitungen müssen im offenen Zustand markiert und später über Fixpunkte (Ecken, Dosen, Türen) wiedergefunden werden. Putz verschiebt die Oberfläche um 1–2 cm. Lösung: Sicherheitskorridor statt exakter Linie.</p></div>
+  <div class="item"><span class="pill wait">Achtung</span> <b>Haftung</b><p>Zeigt die App „frei“ und es knallt trotzdem: Wer haftet? Die App darf nur zeigen, wo Leitungen dokumentiert sind, nie garantieren, dass eine Stelle frei ist.</p></div>
+  <div class="item"><span class="pill wait">Achtung</span> <b>Norm deckt schon viel ab</b><p>DIN 18015-3 legt Installationszonen fest (Leitungen nur waagerecht/senkrecht in festen Streifen). Gegenargument: Laien kennen sie nicht, Altbauten und Pfusch halten sich nicht daran, Wasser- und Heizungsrohre sowie Fußbodenheizung sind nicht erfasst.</p></div>
+  <div class="item"><span class="pill est">Nebensache</span> <b>Datenschutz</b><p>3D-Grundrisse privater Wohnungen sind sensibel (Einbruch). Zugriff nur per QR plus Konto, keine öffentlichen Links.</p></div>
+</div>
+
+<h3 style="margin-top:20px">Empfehlung für die Präsentation</h3>
+<div class="group">
+  <div class="item"><b>Als B2B2C positionieren</b><p>Kunde ist der Gebäudeeigentümer (Hausverwaltung, Wohnungsunternehmen, Bauträger). Erfasst wird von Handwerksbetrieben. Genutzt wird kostenlos von Bewohnern.</p></div>
+  <div class="item"><b>Einstieg: Sanierung beim Mieterwechsel</b><p>Große Vermieter sanieren oft genau dann. Wände sind offen, ein Auftraggeber hat viele Wohnungen, und der nächste Mieter ist sofort Nutzer.</p></div>
+  <div class="item"><b>„Gerät ersetzen“ nicht als Hauptnutzen verkaufen</b><p>Das Gerät ist billig. Der Mehrwert ist: sehen, was <i>hinter</i> der Wand liegt, bevor man überhaupt anfängt, und zwar auch Wasser und Heizung, die viele Geräte schlecht finden.</p></div>
+</div>
+
+<!-- ============ WETTBEWERB ============ -->
+<h2 id="wettbewerb">Wettbewerb</h2>
+<p>Ergebnis: Es gibt Teillösungen, aber keinen gefundenen Anbieter, der Handy-Scan vor dem Verputz, Wohnungs-Datenbank und Bewohner-Zugang per QR verbindet.</p>
+<div class="tw"><table>
+  <tr><th>Anbieter</th><th>Was es macht</th><th>Lücke zu uns</th></tr>
+  <tr><td><b>Bosch Truvo, Wallscanner</b></td><td>Ortungsgerät, ca. 40–60 € (Profi bis 550 €)</td><td>Erkennt nur live, Wasser/Kunststoff schwer, Laie muss deuten</td></tr>
+  <tr><td><b>Walabot DIY</b></td><td>Radar-Aufsatz fürs Handy</td><td>Hardware nötig, live statt dokumentiert</td></tr>
+  <tr><td><b>OpenSpace, Matterport</b></td><td>360°/3D-Scans vor dem Verputz, v. a. US-Großbau</td><td>Teuer, für Bauleiter, kein Bewohnerzugang</td></tr>
+  <tr><td><b>PlanRadar, Capmo, Craftnote</b></td><td>Baudoku-Apps mit Fotos (DACH)</td><td>2D-Fotoberge – genau das „50.000 Fotos“-Problem</td></tr>
+  <tr><td><b>Schneider Digital Logbook</b></td><td>QR-Code an Schaltanlagen für Gerätedoku</td><td>Doku der Geräte, nicht der Leitungswege</td></tr>
+  <tr><td><b>Hager Ready</b></td><td>Planung und Beschriftung von Sicherungskästen</td><td>Kein Scan, keine Leitungsverläufe</td></tr>
+  <tr><td><b>RoomPipe</b></td><td>iPhone-Raumscan, Rohre per Hand in AR einzeichnen</td><td>Heimwerker-Tool, kein Fachbetrieb, keine Weitergabe an Nachmieter</td></tr>
+  <tr><td><b>AsBuilt (US)</b></td><td>Übergabe-Mappe vom Bauträger an Hausbesitzer</td><td>US-Neubau, Fotos statt Scan, kein QR-Standard</td></tr>
+  <tr><td><b>Metaroom, XR Scan</b></td><td>LiDAR-Aufmaß-Apps (DE/AT)</td><td>Nur Raumgeometrie, keine Leitungen</td></tr>
+</table></div>
+<p class="secondary">Gefährlichster Nachahmer: Matterport oder PlanRadar mit einem Bewohner-Modus. Euer Schutz wäre der QR-Standard und Partnerschaften mit Elektro-Innungen.</p>
+
+<!-- ============ MARKT ============ -->
+<h2 id="markt">Markt</h2>
+<div class="tw"><table>
+  <tr><th>Kennzahl</th><th class="n">Wert</th><th>Quelle</th></tr>
+  <tr><td>Wohnungen in Deutschland</td><td class="n">43,1 Mio.</td><td>Zensus 2022</td></tr>
+  <tr><td>davon vermietet</td><td class="n">23,1 Mio.</td><td>Bundesregierung, Zensus 2022</td></tr>
+  <tr><td>Wohnungen älter als 30 Jahre</td><td class="n">ca. 75 %</td><td>Destatis</td></tr>
+  <tr><td>Lebensdauer Elektroinstallation</td><td class="n">20–30 Jahre</td><td>Uni Münster (2011)</td></tr>
+  <tr><td>Umzüge pro Jahr</td><td class="n">ca. 9 Mio.</td><td>ImmoScout24</td></tr>
+  <tr><td>Elektrohandwerk: Betriebe</td><td class="n">ca. 48.000</td><td>ZVEH</td></tr>
+  <tr><td>Elektrohandwerk: Umsatz 2025</td><td class="n">88,2 Mrd. €</td><td>Destatis</td></tr>
+  <tr><td>Leitungswasserschäden 2024 (alle Ursachen)</td><td class="n">4,9 Mrd. €</td><td>Finanztip / GDV</td></tr>
+  <tr><td>Anteil Leitungswasser an Gebäudeschäden</td><td class="n">61 %</td><td>R+V 2025</td></tr>
+</table></div>
+<p class="secondary">Die 4,9 Mrd. € sind alle Leitungswasserschäden, nicht nur angebohrte Rohre. Eine Statistik nur für Bohrschäden gibt es nicht.</p>
+
+<h3 style="margin-top:20px">Grobe Marktrechnung <span class="pill est">Schätzung</span></h3>
+<div class="group">
+  <div class="row"><span class="k">Elektrik wird erneuert</span><span class="v">43 Mio. ÷ 25 Jahre ≈ 1,7 Mio. Wohnungen/Jahr</span></div>
+  <div class="row"><span class="k">plus Neubau</span><span class="v">ca. 0,25 Mio. Wohnungen/Jahr</span></div>
+  <div class="row"><span class="k">Scan-fähige Wohnungen</span><span class="v">≈ 2 Mio. pro Jahr</span></div>
+  <div class="row"><span class="k">bei 39 € pro Scan</span><span class="v">≈ 78 Mio. € pro Jahr (TAM)</span></div>
+  <div class="row"><span class="k">Ziel Jahr 3: 1 % davon</span><span class="v">20.000 Scans ≈ 0,8 Mio. €</span></div>
+</div>
+<p class="secondary">Rechnung als Größenordnung für die Folie. Ehrlich gesagt: ein Nischenmarkt pro Scan. Größer wird es, wenn der Bestand an Scans wächst und Hausverwaltungen ein Abo pro Wohnung zahlen.</p>
+
+<!-- ============ ZIELGRUPPE ============ -->
+<h2 id="zielgruppe">Zielgruppe</h2>
+<p>Drei Rollen, die nicht dieselben Menschen sind. Das ist der Kern für die Folie.</p>
+
+<div class="group">
+  <div class="item"><span class="pill info">nutzt</span> <h3 style="display:inline">Bewohner, vor allem Nachmieter</h3>
+    <p>Mieter und Selbstnutzer, die bohren, dübeln, Lampen oder Küchen montieren. Handwerkliche Laien, 25–45 Jahre, gerade umgezogen, Smartphone-affin. Kennen DIN-Zonen nicht, besitzen kein Ortungsgerät. Zahlen nichts.</p></div>
+  <div class="item"><span class="pill ok">zahlt</span> <h3 style="display:inline">Gebäudeeigentümer</h3>
+    <p>Hausverwaltungen, Wohnungsunternehmen, private Vermieter, Bauträger und Bauherren. Motiv: weniger Schäden und Versicherungsfälle, weniger Notrufe von Mietern, besserer Bestandsplan für die nächste Sanierung, Pluspunkt bei Vermietung und Verkauf.</p></div>
+  <div class="item"><span class="pill wait">erfasst</span> <h3 style="display:inline">Handwerksbetriebe</h3>
+    <p>Elektro, SHK, Trockenbau, Sanierungsfirmen wie Z&amp;Z Concept Bau. Motiv: Scan als bezahlte Zusatzleistung, schnellere Aufmaße, Beweis gegen spätere Reklamationen, kein Fotochaos mehr.</p></div>
+</div>
+
+<h3 style="margin-top:20px">Einstiegssegment</h3>
+<div class="group">
+  <div class="item"><b>Wohnungsunternehmen und Hausverwaltungen, die bei Mieterwechsel sanieren</b>
+    <p>Ein Kunde, viele Wohnungen. Wände sind regelmäßig offen. Der nächste Mieter nutzt die App sofort. Über die Hälfte der Mietwohnungen gehört Privatpersonen oder WEGs, die über Hausverwaltungen erreichbar sind.</p></div>
+</div>
+
+<h3 style="margin-top:20px">Persona</h3>
+<div class="group">
+  <div class="item"><b>Lena, 29, zieht in eine sanierte Altbauwohnung</b>
+    <p>Will am ersten Wochenende Regale, Lampen und eine TV-Wand anbringen. Hat einen Akkuschrauber, aber kein Ortungsgerät. Fragt im Hausflur, ob „da Leitungen sind“. Mit der App: Sicherungskasten auf, QR scannen, Wand im 3D-Modell ansehen, sicher bohren.</p></div>
+  <div class="item"><b>Herr Kaya, Hausverwalter, 600 Wohnungen</b>
+    <p>Bekommt mehrmals im Jahr Meldungen über angebohrte Leitungen, meist über die Versicherung. Will Schäden und Rückfragen loswerden und den Zustand jeder Wohnung dokumentiert haben, ohne Ordner voller Fotos.</p></div>
+</div>
+
+<details>
+  <summary>Weitere, spätere Zielgruppen</summary>
+  <ul>
+    <li><b>Versicherer:</b> Leitungswasser ist der größte Kostenblock der Wohngebäudeversicherung. Möglicher Partner für Rabatte bei dokumentierten Wohnungen.</li>
+    <li><b>Facility Management und Gewerbe:</b> Büros, Praxen, Läden mit häufigen Umbauten.</li>
+    <li><b>Gutachter und Sachverständige:</b> Schadensaufklärung nach Wasser- oder Elektroschäden.</li>
+    <li><b>Käufer von Bestandsimmobilien:</b> Scan als Teil der Übergabeunterlagen.</li>
+  </ul>
+</details>
+
+<!-- ============ SPRECHTEXT ============ -->
+<h2 id="sprechtext">Sprechtext Zielgruppe · 3 Minuten</h2>
+<p class="secondary">ca. 320 Wörter ≈ 2:40 bei ruhigem Tempo, Puffer für Pausen. Klammern sind Hinweise, nicht vorlesen.</p>
+<div class="group script" style="padding:16px">
+  <p class="cue">Einstieg · 0:00</p>
+  <p>Wer hat bei uns eigentlich das Problem – und wer bezahlt dafür? Das sind bei unserer Idee nicht dieselben Leute. Deshalb unterscheiden wir drei Rollen: wer die App nutzt, wer sie bezahlt und wer die Daten erfasst.</p>
+
+  <p class="cue">Nutzer · 0:20</p>
+  <p>Genutzt wird die App von Bewohnern, vor allem von Mietern, die neu einziehen. Stellt euch Lena vor: 29, gerade in eine Altbauwohnung gezogen, am ersten Wochenende sollen Regale und Lampen an die Wand. Sie hat einen Akkuschrauber, aber kein Ortungsgerät, und von der Norm zu Installationszonen hat sie nie gehört. Genau diese Leute rufen später beim Elektriker an, weil sie eine Leitung angebohrt haben – das haben uns Betriebe aus dem Elektrohandwerk bestätigt. Für Lena ist die App kostenlos: Sicherungskasten auf, QR-Code scannen, Wand ansehen, bohren.</p>
+
+  <p class="cue">Zahler · 1:05</p>
+  <p>Bezahlen soll der Eigentümer des Gebäudes. Das sind Hausverwaltungen, Wohnungsunternehmen, private Vermieter und Bauträger. Warum? Weil sie die Schäden tragen. Leitungswasser ist heute der größte Kostenblock der Wohngebäudeversicherung, 2024 waren es 4,9 Milliarden Euro. Nicht alles davon kommt vom Bohren, aber jeder vermiedene Fall spart Geld, Ärger und Rückfragen. Dazu kommt: Bei der nächsten Sanierung liegt ein 3D-Bestandsplan vor, statt dass jemand die Wand aufstemmen muss.</p>
+
+  <p class="cue">Erfasser · 1:45</p>
+  <p>Erfasst werden die Daten von Handwerksbetrieben: Elektrikern, Installateuren, Sanierungsfirmen. In Deutschland gibt es rund 48.000 Elektrobetriebe. Für sie ist der Scan eine bezahlte Zusatzleistung und ersetzt das, was Z&amp;Z Concept Bau uns beschrieben hat: tausende Einzelfotos, in denen sich am Ende niemand mehr zurechtfindet. Ein Durchgang mit dem Handy reicht.</p>
+
+  <p class="cue">Einstieg in den Markt · 2:15</p>
+  <p>Womit fangen wir an? Mit Wohnungsunternehmen und Hausverwaltungen, die beim Mieterwechsel sanieren. Da sind die Wände ohnehin offen, ein Kunde hat hunderte Wohnungen, und der nächste Mieter ist sofort Nutzer. In Deutschland gibt es rund 23 Millionen Mietwohnungen, und bei vielen davon ist die Elektrik älter als 30 Jahre.</p>
+
+  <p class="cue">Schluss · 2:45</p>
+  <p>Kurz gesagt: Der Bewohner nutzt es, der Eigentümer bezahlt es, der Handwerker erfasst es. Und jeder neue Mieter profitiert von der Arbeit, die vor ihm gemacht wurde.</p>
+</div>
+
+<!-- ============ VERLAUF ============ -->
+<h2 id="verlauf">Verlauf</h2>
+<div class="group log">
+  <div class="row"><span class="date">vor 03.11.</span><span>Team: Problemdefinition und Problemfolgen auf Folien</span></div>
+  <div class="row"><span class="date">vor 03.11.</span><span>B2B-Gespräch mit Z&amp;Z Concept Bau GmbH: Bedarf bestätigt, Fokus Bestand und Sanierung</span></div>
+  <div class="row"><span class="date">vor 03.11.</span><span>Erfahrungsberichte aus dem ELT-Handwerk gesammelt</span></div>
+  <div class="row"><span class="date">03.11.2026</span><span>Recherche Wettbewerb und Markt, ehrliche Bewertung, Zielgruppe und Sprechtext erstellt</span></div>
+  <div class="row"><span class="date">05.11.2026</span><span><span class="pill late">anstehend</span>&nbsp; 1. Milestone-Präsentation</span></div>
+</div>
+
+<h3 style="margin-top:20px">Offene Fragen</h3>
+<div class="group">
+  <div class="item"><span class="pill wait">offen</span> Preis: pro Scan, pro Wohnung im Abo oder im Handwerker-Angebot eingepreist?</div>
+  <div class="item"><span class="pill wait">offen</span> Wie lange braucht ein Scan pro Wohnung wirklich? Einmal mit iPhone Pro testen.</div>
+  <div class="item"><span class="pill wait">offen</span> Würden Hausverwaltungen zahlen? Ein Interview mit einer Hausverwaltung fehlt noch.</div>
+  <div class="item"><span class="pill wait">offen</span> Wie werden Leitungen markiert: von Hand im Scan oder automatisch per Bilderkennung?</div>
+  <div class="item"><span class="pill wait">offen</span> Name: „Rettungsleitung“ ist Arbeitstitel.</div>
+</div>
+
+<!-- ============ QUELLEN ============ -->
+<h2 id="quellen">Quellen</h2>
+<details>
+  <summary>Alle Quellen (20)</summary>
+  <ul class="secondary">
+    <li><a href="https://www.baunetzwissen.de/glossar/i/installationszonen-48841">Baunetzwissen: Installationszonen DIN 18015-3</a></li>
+    <li><a href="https://www.openspace.ai/?p=5118">OpenSpace: Pre-Drywall-Capture</a></li>
+    <li><a href="https://www.mortenson.com/news-insights/ever-wonder-what-is-behind-your-walls">Mortenson: What is behind your walls</a></li>
+    <li><a href="https://invisionstudio.com/built-once-understood-everywhere-how-matterport-3d-tours-improve-construction-remodel-projects/">Invision Studio: Matterport bei Umbau</a></li>
+    <li><a href="https://apps.apple.com/us/app/asbuilt/id6755637652">AsBuilt (App Store)</a></li>
+    <li><a href="https://apps.apple.com/ng/app/roompipe/id6505030991">RoomPipe (App Store)</a></li>
+    <li><a href="https://apps.apple.com/us/app/-/id1474817785">Walabot DIY (App Store)</a></li>
+    <li><a href="https://apps.apple.com/us/app/xrscan/id1554055881">XR Scan (App Store)</a></li>
+    <li><a href="https://apps.apple.com/at/app/metaroom/id1637077163?l=en-GB">Metaroom (App Store)</a></li>
+    <li><a href="https://www.bosch-diy.com/de/de/p/truvo-06036812z0">Bosch Truvo</a></li>
+    <li><a href="https://www.pressetext.com/news/dokumentation-und-predictive-maintenance-fuer-ns-und-ms-anlagen-digital-logbook-von-schneider-electric.html">Schneider Electric Digital Logbook</a></li>
+    <li><a href="https://hager.com/de/tools/hager-ready">Hager Ready</a></li>
+    <li><a href="https://www.ki-syndikat.de/baudokumentation-apps-vergleich/">Vergleich Baudoku-Apps (PlanRadar, Capmo, Craftnote)</a></li>
+    <li><a href="https://www.capterra.com/p/191822/OpenSpace/">OpenSpace Preise (Capterra)</a></li>
+    <li><a href="https://vdiv.de/news-details/privatpersonen-und-wohnungseigentuemergemeinschaften-halten-635-prozent-des-mietwohnungsbestands">VDIV: Zensus 2022, 23,06 Mio. Mietwohnungen</a></li>
+    <li><a href="https://www.wiwi.uni-muenster.de/ifg/sites/ifg/files/downloads/pw/presenations/01_theurl_web.pdf">Uni Münster: Bestand und Lebensdauer</a></li>
+    <li><a href="https://www.immobilienscout24.de/wissen/mieten/die-haeufigsten-umzugspannen.html">ImmoScout24: Umzüge pro Tag</a></li>
+    <li><a href="https://www.deutsche-handwerks-zeitung.de/?p=360901">DHZ: Branchenkennzahlen E-Handwerk</a></li>
+    <li><a href="https://www.finanztip.de/presse/leitungswasserschaeden-steigen-stark-und-verteuern-die-wohngebaeudeversicherung-massiv/">Finanztip: Leitungswasserschäden 2024</a></li>
+    <li><a href="https://www.ruv.de/newsroom/pressemitteilungen/2026-03-12-leitungswasser-schaden-haus">R+V: Leitungswasser 2025</a></li>
+  </ul>
+</details>
+</main>
+</body>
+</html>
